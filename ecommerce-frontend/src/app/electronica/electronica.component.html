@@ -1,0 +1,44 @@
+
+<!-- Buscador centrado y con un ancho más pequeño -->
+<div class="form-group">
+  <input type="text" class="form-control" placeholder="Buscar productos" [(ngModel)]="filtro">
+</div>
+
+<div class="contenedor-productos">
+  <div *ngFor="let producto of productos | filtroProducto: filtro : productoIdResaltado" [id]="'producto-' + producto.id" class="card">
+    <div class="image_container">
+      <img [src]="'http://localhost:8000/storage/' + producto.foto" alt="{{ producto.nombre }}" class="image">
+    </div>
+    <div class="title">
+      <span>{{ producto.nombre }}</span>
+    </div>
+    <div class="price">
+      <span>{{ producto.precio | currency }}</span>
+    </div>
+    <div class="actions">
+      <!-- Botón de 'Ver más' -->
+      <button class="cart-button" (click)="abrirVentanaFlotante(producto)">
+        <span>Ver más</span>
+      </button>
+      <!-- Botón de 'Añadir al carrito' -->
+      <button class="cart-button" (click)="agregarAlCarrito(producto)">
+        <svg class="cart-icon" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" fill="none">
+          <path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" stroke-linejoin="round" stroke-linecap="round"></path>
+        </svg>
+        <span>Añadir al carrito</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal flotante -->
+<div id="modalProducto" class="modal" [ngClass]="{'show': mostrarModal}">
+  <div class="modal-content">
+    <span class="close" (click)="cerrarVentanaFlotante()">&times;</span>
+    <h2>{{ productoSeleccionado?.nombre }}</h2>
+    <img [src]="'http://localhost:8000/storage/' + productoSeleccionado?.foto" alt="{{ productoSeleccionado?.nombre }}" class="image">
+    <p><strong>Descripción:</strong> {{ productoSeleccionado?.descripcion }}</p>
+    <p><strong>Precio:</strong> {{ productoSeleccionado?.precio | currency }}</p>
+    <p><strong>Cantidad disponible:</strong> {{ productoSeleccionado?.cantidad }}</p>
+  </div>
+</div>

@@ -1,0 +1,83 @@
+<div class="container">
+  <h1>Gestión de Pedidos</h1>
+
+  <table class="table mt-3">
+    <thead>
+      <tr>
+        <th>ID Pedido</th>
+        <th>Usuario</th>
+        <th>Estado</th>
+        <th>Fecha de Entrega</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pedido of pedidos">
+        <td>{{ pedido.id }}</td>
+        <td>{{ pedido.usuario?.nombre || 'Sin usuario' }}</td>
+        <td>{{ pedido.estado }}</td>
+        <td>{{ pedido.fecha_entrega || 'No asignada' }}</td>
+        <td>
+          <div class="actions-container">
+            <button (click)="abrirModalEstado(pedido)" class="custom-button btn-sm">Cambiar Estado</button>
+            <button (click)="abrirModalFecha(pedido)" class="custom-button btn-sm">Asignar Fecha</button>
+            <button (click)="abrirModal(pedido)" class="custom-button btn-sm">Ver Pedido</button>
+            <button (click)="cancelarPedido(pedido.id)" class="custom-button btn-sm">Cancelar Pedido</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Modal de Estado -->
+  <div *ngIf="mostrarModalEstado" class="modal-overlay">
+    <div class="modal modal-content">
+      <span class="close" (click)="cerrarModalEstado()">&times;</span>
+      <h2>Cambiar Estado del Pedido</h2>
+      <select [(ngModel)]="pedidoSeleccionado.estado">
+        <option value="en proceso">En proceso</option>
+        <option value="fecha asignada">Fecha asignada</option>
+        <option value="vendido">Vendido</option>
+        <option value="cancelado">Cancelado</option>
+      </select>
+      <div class="modal-buttons">
+        <button (click)="actualizarEstado(pedidoSeleccionado.id, pedidoSeleccionado.estado)" class="btn-primary custom-button">Guardar Cambios</button>
+        <button (click)="cerrarModalEstado()" class="btn-secondary custom-button">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Fecha -->
+  <div *ngIf="mostrarModalFecha" class="modal-overlay">
+    <div class="modal modal-content">
+      <span class="close" (click)="cerrarModalFecha()">&times;</span>
+      <h2>Asignar Fecha de Entrega</h2>
+      <input type="date" [(ngModel)]="pedidoSeleccionado.fecha_entrega">
+      <div class="modal-buttons">
+        <button (click)="actualizarEstado(pedidoSeleccionado.id, 'fecha asignada', pedidoSeleccionado.fecha_entrega)" class="btn-primary custom-button">Guardar Fecha</button>
+        <button (click)="cerrarModalFecha()" class="btn-secondary custom-button">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Detalles del Pedido -->
+  <div *ngIf="mostrarModal" class="modal-overlay">
+    <div class="modal modal-content">
+      <span class="close" (click)="cerrarModal()">&times;</span>
+      <h2>Detalles del Pedido {{ pedidoSeleccionado.id }}</h2>
+      <p>Usuario: {{ pedidoSeleccionado.usuario?.nombre }}</p>
+      <p>Estado: {{ pedidoSeleccionado.estado }}</p>
+      <p>Fecha de Entrega: {{ pedidoSeleccionado.fecha_entrega || 'No asignada' }}</p>
+      <h3>Productos:</h3>
+      <ul>
+        <li *ngFor="let producto of pedidoSeleccionado.productos">
+          {{ producto.nombre }} - Cantidad: {{ producto.pivot.cantidad }}
+        </li>
+      </ul>
+      <div class="modal-buttons">
+        <button (click)="cerrarModal()" class="btn-primary custom-button">Cerrar</button>
+        <button (click)="cerrarModal()" class="btn-secondary custom-button">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>

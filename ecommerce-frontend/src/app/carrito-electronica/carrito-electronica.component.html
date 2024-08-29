@@ -1,0 +1,46 @@
+<div class="container main-content">
+    <h1>Tu Carrito Electrónica</h1>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Precio</th>
+          <th>Cantidad</th>
+          <th>Total</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of carrito">
+          <td>
+            <img [src]="'http://localhost:8000/storage/' + item.producto?.foto" alt="{{ item.producto?.nombre }}" class="miniatura">
+            {{ item.producto?.nombre }}
+          </td>
+          <td>{{ item.producto?.precio | currency }}</td>
+          <td>{{ item.cantidad }}</td>
+          <td>{{ item.producto?.precio * item.cantidad | currency }}</td>
+          <td>
+            <button (click)="eliminarProductoDelCarrito(item.id)" class="btn-secondary">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div class="total-container">
+      <h2>Total: {{ total | currency }}</h2>
+  
+      <!-- Selección del tipo de pago -->
+      <div class="payment-options">
+        <label>
+          <input type="radio" name="tipoPago" [(ngModel)]="tipoPago" value="tienda"> Pago en tienda
+        </label>
+        <label>
+          <input type="radio" name="tipoPago" [(ngModel)]="tipoPago" value="paypal"> Pago con PayPal
+        </label>
+      </div>
+  
+      <button class="btn-primary" (click)="realizarPedido()">Realizar Pedido</button>
+    </div>
+  </div>
+  

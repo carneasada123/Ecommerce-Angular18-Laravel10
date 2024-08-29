@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+/* Global styles - styles.css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    background-color: #212121;
+    color: hsl(192, 100%, 88%);
+  }
+
+  .centered-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  a {
+    text-decoration: none;
+  }

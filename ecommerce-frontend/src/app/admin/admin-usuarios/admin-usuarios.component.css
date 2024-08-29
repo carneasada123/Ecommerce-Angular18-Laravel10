@@ -1,0 +1,23 @@
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #333;
+    color: white;
+  }
+  .main-content {
+    margin-top: 120px; /* Ajusta este valor según la altura de tu navbar */
+  }

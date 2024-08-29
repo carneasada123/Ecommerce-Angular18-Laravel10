@@ -1,0 +1,19 @@
+//Para inicializar proyecto
+
+composer install
+php artisan migrate
+php artisan db:seed --class=AdminSeeder
+php artisan serve
+
+//Para agregar nuevas imagenes
+php artisan storage:link
+
+
+//Basicos
+***Administrador***
+gp@gmail.com
+admin123
+
+***cliente***
+gio@gmail.com
+12345678

@@ -1,0 +1,61 @@
+<app-header></app-header>
+<!-- Mostrar el Menú solo si el usuario está logueado -->
+<nav *ngIf="isLoggedIn()" class="navbar custom-navbar">
+  <a class="navbar-brand" href="/">GPETRONIC</a>
+  <button class="menu-toggle" (click)="toggleMenu()">&#9776;</button>
+
+  <div class="navbar-collapse">
+    <ul class="horizontal-nav" [class.show]="menuVisible">
+      <!-- Opciones del menú para Administrador -->
+      <li class="nav-item" *ngIf="isAdmin()">
+        <a class="nav-link" routerLink="/admin/pedidos" [class.active]="isActive('/admin/pedidos')" (click)="closeMenu()">Pedidos</a>
+      </li>
+      <li class="nav-item" *ngIf="isAdmin()">
+        <a class="nav-link" routerLink="/admin/productos" [class.active]="isActive('/admin/productos')" (click)="closeMenu()">Productos</a>
+      </li>
+      <li class="nav-item" *ngIf="isAdmin()">
+        <a class="nav-link" routerLink="/admin/usuarios" [class.active]="isActive('/admin/usuarios')" (click)="closeMenu()">Usuarios</a>
+      </li>
+      <li class="nav-item" *ngIf="isAdmin()">
+        <a class="nav-link" routerLink="/admin/estadisticas" [class.active]="isActive('/admin/estadisticas')" (click)="closeMenu()">Estadísticas</a>
+      </li>
+
+      <!-- Opciones del menú para Cliente -->
+<li class="nav-item" *ngIf="!isAdmin()">
+  <!-- Enlace al carrito de Electrónica -->
+  <a class="nav-link" routerLink="/carrito-electronica"
+     [class.active]="isActive('/carrito-electronica')"
+     (click)="closeMenu()">Carrito Electrónica</a>
+</li>
+
+<li class="nav-item" *ngIf="!isAdmin()">
+  <!-- Enlace al carrito de Beterwere -->
+  <a class="nav-link" routerLink="/carrito-beterwere"
+     [class.active]="isActive('/carrito-beterwere')"
+     (click)="closeMenu()">Carrito Beterwere</a>
+</li>
+
+<li class="nav-item" *ngIf="!isAdmin()">
+  <a class="nav-link" routerLink="/perfil"
+     [class.active]="isActive('/perfil')"
+     (click)="closeMenu()">Perfil</a>
+</li>
+
+<li class="nav-item" *ngIf="!isAdmin()">
+  <a class="nav-link" routerLink="/pedidos"
+     [class.active]="isActive('/pedidos')"
+     (click)="closeMenu()">Pedidos</a>
+</li>
+
+
+      <!-- Opción común de cerrar sesión para todos los roles -->
+      <li class="nav-item">
+        <a class="nav-link" (click)="logout()">Cerrar Sesión</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>
+<app-footer></app-footer>
+

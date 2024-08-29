@@ -1,0 +1,214 @@
+<img class="imagen-fondo01" src="public/assets/img/logo/banner4.png" alt="Fondo">
+<img class="imagen-fondo" src="public/assets/img/logo/tienda-com.jpeg" alt="Fondo">
+
+<div class="main-content inicio-page container mt-5">
+
+  <div class="row direccion-ventas">
+    <div class="col-sm-12 col-md-5 boton-content">
+      <a [routerLink]="['/electronica']">
+        <img src="public/assets/img/logo/gptronics.png" width="30" alt="">
+        <p>Articulos Electronicos</p>
+      </a>
+    </div>
+    <div class="col-sm-12 col-md-5 boton-content">
+      <a [routerLink]="['/beterwere']">
+        <img src="public/assets/img/logo/gptronics.png" width="30" alt="">
+        <p>Conseguir Betterware</p>
+      </a>
+    </div>
+  </div>
+
+  <!-- Botones para iniciar sesión y registrarse -->
+  <div class="row">
+    <div class="col-12 text-center">
+      <button (click)="toggleLogin()" class="btn btn-primary m-2">Iniciar Sesión</button>
+      <button (click)="toggleRegister()" class="btn btn-secondary m-2">Registrarse</button>
+    </div>
+  </div>
+
+
+
+  <!-- Ventana flotante para iniciar sesión, se agrego evento close modal para cerrar ventana una vez que el usuario de click afuera -->
+  <div *ngIf="showLogin" (click)="closeModal($event)" class="modal-overlay login-principal">
+    <form (click)="$event.stopPropagation()" (submit)="onLoginSubmit()" class="login-register-container">
+      <div class="input-container">
+        <div class="input-content">
+          <div class="input-dist">
+            <div class="input-type">
+              <input class="input-is" type="email" required placeholder="Email" id="loginEmail" [(ngModel)]="loginData.email" name="email" />
+              <input class="input-is" type="password" required placeholder="Password" id="loginPassword" [(ngModel)]="loginData.password" name="password" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="submit-button">Iniciar Sesion</button>
+    </form>
+  </div>
+
+  <!-- Ventana flotante para registro, se agrego el evento close modal para crerrar ventana cuando se de click afuera -->
+  <div *ngIf="showRegister" (click)="closeModal($event)" class="modal-overlay register-principal">
+    <form (click)="$event.stopPropagation()" (submit)="onRegisterSubmit()" class="login-register-container">
+      <div class="input-container">
+        <div class="input-content">
+          <div class="input-dist">
+            <div class="input-type">
+              <input class="input-is" type="text" required placeholder="Nombre" [(ngModel)]="registerData.nombre" name="nombre" />
+
+              <!-- campo para Dirección -->
+              <input class="input-is" type="text" placeholder="Dirección" [(ngModel)]="registerData.direccion" name="direccion" />
+
+              <!-- campo para Teléfono -->
+              <input class="input-is" type="text" placeholder="Teléfono" [(ngModel)]="registerData.telefono" name="telefono" />
+
+              <!-- campo para Celular -->
+              <input class="input-is" type="text" placeholder="Celular" [(ngModel)]="registerData.celular" name="celular" />
+
+              <input class="input-is" type="email" required placeholder="Email" [(ngModel)]="registerData.email" name="email" />
+              <input class="input-is" type="password" required placeholder="Password" [(ngModel)]="registerData.password" name="password" />
+              <input class="input-is" type="password" required placeholder="Confirmar Password" [(ngModel)]="registerData.password_confirmation" name="password_confirmation" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="submit-button">Registrarse</button>
+    </form>
+  </div>
+
+
+  <!-- Sección de ofertas -->
+  <div class="row mt-5">
+    <div class="col-12 text-center">
+      <h2>Ofertas</h2>
+    </div>
+
+    <div class="row productos-style">
+      <div class="col-md-4" *ngFor="let oferta of ofertas">
+        <div class="card">
+          <div class="image_container">
+            <img [src]="'http://localhost:8000/storage/' + oferta.foto" alt="Imagen del producto" class="image">
+          </div>
+          <div class="card-body">
+            <h5 class="title">{{ oferta.nombre }}</h5>
+            <p class="size">{{ oferta.descripcion }}</p>
+            <div class="action">
+              <p class="price">{{ oferta.precio | currency }}</p>
+            </div>
+            <a (click)="verOferta(oferta)" class="cart-button">Ver Oferta</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Botónes de redes sociales -->
+    <div class="floating-buttons">
+      <a href="https://wa.me/523112687341?text=¡Hola buen dia Don Luis Fernando Gomez Paz me gustaria saber mas acerca GPTRONICS!" class="whatsapp" target="_blank">
+        <img src="public/assets/img/logo/wa.png" alt="WhatsApp">
+      </a>
+
+      <a href="https://www.facebook.com/profile.php?id=100076225088977" class="facebook" target="_blank">
+        <img src="public/assets/img/logo/facebook.png" alt="Facebook">
+      </a>
+
+
+      <!-- Botón de Chatbot -->
+      <div class="floating-button">
+        <button id="chatbot-button" (click)="toggleChatbot()">
+          <img src="public/assets/img/logo/robot.jpg" alt="Chatbot">
+        </button>
+      </div>
+
+      <!-- Contenedor del Chatbot -->
+      <div id="chatbot-container" [ngClass]="{ 'chatbot-visible': isChatbotVisible, 'chatbot-hidden': !isChatbotVisible }">
+        <iframe src="https://www.tidio.com/panel/simulateVisitor?projectPublicKey=lvamp0mjzutd990iluxx0wbclzfrfkoq" width="300" height="400"></iframe>
+      </div>
+    </div>
+</div>
+
+ <!-- Conoce mas sobre nosotross -->
+ <section id="home" class="sec-main">
+  <h1 class="main-heading">LA TIENDA NUMERO 1 DE SANTIAGO IXC.</h1>
+</section>
+
+<section id="about" class="sec-about">
+  <div class="container">
+    <h1>ACERCA DE MI</h1>
+
+    <div class="row">
+      <div class="col-sm-12 col-md-4 col-sm-offset-3 cont-1">
+        <img src="public/assets/img/logo/madre.png" width="380" alt="">
+      </div>
+      <div class="col-sm-12 col-md-8 col-sm-offset-3 cont-2">
+        <p>Me llamo Luis Fernando Gomez Paz dedico mi negocio a la mujer que me enseñó todo lo que se, la mujer que me ha enseñado a salir adelanta a pesar de problemas tan pesados, la mujer que está ahí sin importar que allá pasado, la que me enseñó a manejar un negocio, Te amooo mi mamá, eres la mejor de todas.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="services" class="sec-services">
+  <div class="container">
+    <h1>Servicios</h1>
+
+    <hr />
+
+    <div class="row">
+      <div class="col-sm-4 services-skills">
+        <i class="fa fa-4x fa-hand-sparkles"></i>
+        <h2 class="h3">Limpieza de equipos</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non risus libero. Vivamus luctus non est ut rutrum. </p>
+      </div>
+
+      <div class="col-sm-4 services-skills">
+        <i class="fa fa-4x fa-computer"></i>
+        <h2 class="h3">Venta de articulos electronicos</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non risus libero. Vivamus luctus non est ut rutrum. </p>
+      </div>
+
+      <div class="col-sm-4 services-skills">
+        <i class="fa fa-4x fa-house-circle-check"></i>
+        <h2 class="h3">Obten articulos Betterware</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non risus libero. Vivamus luctus non est ut rutrum. </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials" class="sec-testimonials">
+  <div class="container">
+    <h1>¿Que opinan nuestro clientes?</h1>
+
+    <hr/>
+
+    <div class="row">
+      <div class="col-sm-4">
+        <p class="text-center">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non risus libero. Vivamus luctus non est ut rutrum. "</p>
+
+        <p class="text-right">&mdash; Mario Venegas</p>
+      </div>
+
+      <div class="col-sm-4">
+        <p class="text-center">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non risus libero. Vivamus luctus non est ut rutrum. "</p>
+
+        <p class="text-right">&mdash; Ing. Giovanni Machuca Pereida</p>
+      </div>
+
+      <div class="col-sm-4">
+        <p class="text-center">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non risus libero. Vivamus luctus non est ut rutrum. "</p>
+
+        <p class="text-right">&mdash; Dios</p>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  document.getElementById('chatbot-button').addEventListener('click', function() {
+      var chatbotContainer = document.getElementById('chatbot-container');
+      if (chatbotContainer.classList.contains('chatbot-hidden')) {
+          chatbotContainer.classList.remove('chatbot-hidden');
+          chatbotContainer.classList.add('chatbot-visible');
+      } else {
+          chatbotContainer.classList.remove('chatbot-visible');
+          chatbotContainer.classList.add('chatbot-hidden');
+      }
+  });
+</script>

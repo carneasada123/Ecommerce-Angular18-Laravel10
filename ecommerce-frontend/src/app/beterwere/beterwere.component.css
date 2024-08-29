@@ -1,0 +1,180 @@
+
+
+/*buscador*/
+.form-group {
+  margin-top: 120px; /* Ajusta Buscador debajo del navbar */
+  display: flex;
+  justify-content: center; /* Centra el contenido horizontalmente */
+}
+
+.form-control {
+  width: 100%; /* El input toma el 100% del ancho del contenedor padre */
+  max-width: 500px; /* Máximo ancho del buscador */
+}
+
+/*productos*/
+.contenedor-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    margin-top: calc(80px + 20px); 
+  }
+  
+  
+
+  .card {
+    --bg-card: #27272a;
+    --primary: #6d28d9;
+    --primary-800: #4c1d95;
+    --primary-shadow: #2e1065;
+    --light: #d9d9d9;
+    --zinc-800: #18181b;
+    --bg-linear: linear-gradient(0deg, var(--primary) 50%, var(--light) 125%);
+  
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+    width: 14rem;
+    background-color: var(--bg-card);
+    border-radius: 1rem;
+  }
+  
+  .image_container {
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    height: 12rem;/*altura de la imagen*/
+    background-color: var(--primary-800);
+    border-radius: 0.5rem;
+  }
+  
+  .image_container .image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.5rem;
+  }
+  
+  
+  .title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--light);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  
+  .price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--light);
+  }
+  
+  .actions {
+    display: flex;
+    flex-direction: column; /* Alinea los botones verticalmente */
+    gap: 10px; /* Espacio entre los botones */
+  }
+  
+  .cart-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    padding: 0.5rem;
+    background-image: linear-gradient(0deg, var(--primary) 50%, var(--light) 125%);
+    color: var(--light);
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .cart-button:hover {
+    background-color: var(--primary);
+  }
+  
+  .cart-icon {
+    width: 1rem;
+  }
+  
+  .resaltado {
+    border: 2px solid var(--primary);
+    box-shadow: 0 0 10px 2px var(--primary);
+    transition: background-color 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* Estilos del modal */
+.modal {
+  display: none;  /* El modal está oculto por defecto */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.7);  /* Fondo atenuado */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Mostrar modal cuando la clase 'show' está presente */
+.modal.show {
+  display: flex;
+}
+
+.modal-content {
+  background-color: #27272a;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 600px;
+  color: white;
+}
+
+.close {
+  color: white;
+  font-size: 30px;
+  float: right;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: red;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.image {
+  width: 100%; /* La imagen ocupará el 100% del ancho del contenedor */
+  height: auto; /* Mantiene la proporción de la imagen */
+  max-height: 300px; /* Establece una altura máxima para evitar que la imagen sea demasiado grande */
+  object-fit: cover; /* Recorta la imagen si es necesario para que encaje en el contenedor */
+  border-radius: 8px; /* Añade bordes redondeados a la imagen */
+  margin-bottom: 20px;
+}
+
+/* Estilos ajustados para la imagen dentro del modal */
+.modal-content .image {
+  width: 100%; /* Se ajustará automáticamente al ancho del contenedor */
+  max-width: 300px; /* Establece un ancho máximo de 300px */
+  height: auto; /* Mantiene la proporción de la imagen */
+  display: block; /* Centra la imagen en su contenedor */
+  margin: 0 auto; /* Centra horizontalmente la imagen */
+  border-radius: 8px; /* Bordes redondeados */
+}

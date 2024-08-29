@@ -1,0 +1,151 @@
+<div class="container">
+  <h1>Gestión de Productos</h1>
+  
+  <!-- Botón para abrir el modal de agregar producto -->
+  <button (click)="mostrarFormulario = !mostrarFormulario" class="btn-primary custom-button">Agregar Producto</button>
+
+  <!-- Modal de Agregar Producto -->
+  <div *ngIf="mostrarFormulario" class="modal-overlay">
+    <div class="modal modal-content">
+      <span class="close" (click)="mostrarFormulario = false">&times;</span>
+      <h2>Agregar Producto</h2>
+      <form (submit)="agregarProducto()">
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" [(ngModel)]="nuevoProducto.nombre" name="nombre" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="descripcion">Descripción</label>
+          <input type="text" id="descripcion" [(ngModel)]="nuevoProducto.descripcion" name="descripcion" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="precio">Precio</label>
+          <input type="number" id="precio" [(ngModel)]="nuevoProducto.precio" name="precio" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="cantidad">Cantidad</label>
+          <input type="number" id="cantidad" [(ngModel)]="nuevoProducto.cantidad" name="cantidad" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="categoria">Categoría</label>
+          <select id="categoria" [(ngModel)]="nuevoProducto.categoria" name="categoria" class="form-control" required>
+            <option value="electronica">Electrónica</option>
+            <option value="beterwere">Beterwere</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="codigo">Código</label>
+          <input type="text" id="codigo" [(ngModel)]="nuevoProducto.codigo" name="codigo" class="form-control">
+        </div>
+
+        <!-- Estado checkbox -->
+        <div class="checkbox-container centered-checkbox">
+          <input type="checkbox" id="estado" [(ngModel)]="nuevoProducto.estado" name="estado">
+          <label for="estado">Estado</label>
+        </div>
+
+        <!-- Oferta checkbox -->
+        <div class="checkbox-container centered-checkbox">
+          <input type="checkbox" id="oferta" [(ngModel)]="nuevoProducto.oferta" name="oferta">
+          <label for="oferta">Oferta</label>
+        </div>
+
+        <div class="form-group">
+          <label for="foto">Foto</label>
+          <input type="file" id="foto" (change)="onFileChange($event)" name="foto" class="form-control">
+        </div>
+        
+        <div class="modal-buttons">
+          <button type="submit" class="btn-primary custom-button">Guardar</button>
+          <button type="button" (click)="mostrarFormulario = false" class="btn-secondary custom-button">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Tabla de Productos -->
+  <table class="table mt-3">
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Precio</th>
+        <th>Cantidad</th>
+        <th>Categoría</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let producto of productos">
+        <td>{{ producto.codigo }}</td>
+        <td>{{ producto.nombre }}</td>
+        <td>{{ producto.descripcion }}</td>
+        <td>{{ producto.precio }}</td>
+        <td>{{ producto.cantidad }}</td>
+        <td>{{ producto.categoria }}</td>
+        <td>{{ producto.estado ? 'Activo' : 'Inactivo' }}</td>
+        <td class="actions-container">
+          <button (click)="editarProducto(producto)" class="btn-primary custom-button btn-sm">Editar</button>
+          <button (click)="desactivarProducto(producto.id)" class="btn-secondary custom-button btn-sm">Desactivar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Modal de Editar Producto -->
+  <div *ngIf="productoSeleccionado" class="modal-overlay">
+    <div class="modal modal-content">
+      <span class="close" (click)="cancelarEdicion()">&times;</span>
+      <h2>Editar Producto</h2>
+      <form (submit)="actualizarProducto()">
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" [(ngModel)]="productoSeleccionado.nombre" name="nombre" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="descripcion">Descripción</label>
+          <input type="text" id="descripcion" [(ngModel)]="productoSeleccionado.descripcion" name="descripcion" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="precio">Precio</label>
+          <input type="number" id="precio" [(ngModel)]="productoSeleccionado.precio" name="precio" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="cantidad">Cantidad</label>
+          <input type="number" id="cantidad" [(ngModel)]="productoSeleccionado.cantidad" name="cantidad" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="categoria">Categoría</label>
+          <select id="categoria" [(ngModel)]="productoSeleccionado.categoria" name="categoria" class="form-control" required>
+            <option value="electronica">Electrónica</option>
+            <option value="beterwere">Beterwere</option>
+          </select>
+        </div>
+
+        <!-- Estado checkbox -->
+        <div class="checkbox-container centered-checkbox">
+          <input type="checkbox" id="estado" [(ngModel)]="productoSeleccionado.estado" name="estado">
+          <label for="estado">Estado</label>
+        </div>
+
+        <!-- Oferta checkbox -->
+        <div class="checkbox-container centered-checkbox">
+          <input type="checkbox" id="oferta" [(ngModel)]="productoSeleccionado.oferta" name="oferta">
+          <label for="oferta">Oferta</label>
+        </div>
+
+        <div class="form-group">
+          <label for="foto">Foto</label>
+          <input type="file" id="foto" (change)="onFileChange($event)" name="foto" class="form-control">
+        </div>
+        
+        <div class="modal-buttons">
+          <button type="submit" class="btn-primary custom-button">Guardar Cambios</button>
+          <button type="button" (click)="cancelarEdicion()" class="btn-secondary custom-button">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

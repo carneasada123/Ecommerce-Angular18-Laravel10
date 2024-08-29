@@ -1,0 +1,240 @@
+/* Estilos generales para el contenedor y tabla */
+.container {
+  margin-top: calc(80px + 20px); /* Ajusta según la altura del navbar */
+}
+
+h1 {
+  text-align: center;
+  color: #1e90ff; /* Azul brillante */
+  text-shadow: 0 0 5px #1e90ff, 0 0 10px #6a0dad; /* Sombra de texto futurista */
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+  background-color: #696767; /* Fondo oscuro para la tabla */
+  color: #fff; /* Texto blanco */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Sombra sutil para destacar la tabla */
+}
+
+th, td {
+  padding: 15px; /* Más espacio para hacerlo más legible */
+  text-align: center; /* Centrar el texto */
+  border-bottom: 1px solid #333; /* Bordes sutiles entre filas */
+}
+
+th {
+  background-color: #333; /* Encabezado de tabla más oscuro */
+  color: #1e90ff; /* Azul brillante */
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+td {
+  background-color: #222; /* Fondo ligeramente diferente para las celdas */
+}
+
+/* Alinear botones en una fila */
+.actions-container {
+  display: flex;
+  justify-content: space-around; /* Espacio igual entre los botones */
+  align-items: center;
+}
+
+/* Botones dentro de la tabla */
+table td button {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(135deg, #6a0dad 0%, #1e90ff 100%); /* Degradado violeta a azul */
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin-right: 5px; /* Espacio entre botones */
+}
+
+/* Efecto hover para los botones */
+table td button:hover {
+  background: linear-gradient(135deg, #1e90ff 0%, #6a0dad 100%); /* Invertir degradado al hacer hover */
+  box-shadow: 0 0 10px #6a0dad, 0 0 15px #1e90ff; /* Brillo futurista */
+  transform: scale(1.05); /* Aumento leve en tamaño */
+}
+
+tr:hover td {
+  background-color: #2a2a2a; /* Efecto hover más claro para filas */
+}
+
+/* Estilos para la tabla en dispositivos móviles */
+@media (max-width: 768px) {
+  table {
+    font-size: 0.8rem; /* Disminuir el tamaño de fuente en pantallas más pequeñas */
+  }
+
+  table td button {
+    padding: 0.3rem 0.7rem; /* Ajustar tamaño de botones en móviles */
+  }
+}
+ /* Fondo oscuro para el overlay del modal */
+ .modal-overlay {
+  position: fixed;
+  top: 100px; /* Ajuste para evitar la superposición con la navbar */
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8); /* Fondo oscuro con transparencia */
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Alinea los modales en la parte superior */
+  overflow-y: auto; /* Para manejar modales largos */
+}
+
+/* Diseño del modal */
+.modal {
+  position: relative;
+  background: #1b1b1b; /* Fondo oscuro */
+  color: #fff; /* Texto blanco */
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  width: 90%; /* Cambiado para asegurar que se ajuste a pantallas pequeñas */
+  max-width: 600px; /* Máximo ancho del modal */
+  z-index: 1000;
+  text-align: center;
+  overflow-y: auto; /* Permitir desplazamiento si el contenido es grande */
+  max-height: 90vh; /* Limita la altura máxima del modal */
+  border: 2px solid transparent;
+  background-image: linear-gradient(#1b1b1b, #1b1b1b), linear-gradient(135deg, #6a0dad, #1e90ff); /* Borde degradado */
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+}
+
+/* Estilo del título del modal */
+.modal h2 {
+  color: #1e90ff; /* Azul brillante para el título */
+  text-shadow: 0 0 5px #1e90ff, 0 0 10px #6a0dad; /* Sombra de texto futurista */
+}
+
+/* Estilo del botón de cerrar */
+.modal .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+.modal .close:hover {
+  color: #1e90ff; /* Cambia a azul brillante al hacer hover */
+}
+
+/* Estilo para los inputs y selects dentro del modal */
+.modal select,
+.modal input {
+  width: 100%; /* Ocupa todo el ancho disponible */
+  padding: 0.75rem;
+  margin-top: 1rem;
+  background: #333;
+  color: #fff;
+  border: 1px solid #555;
+  border-radius: 0.5rem;
+}
+
+/* Contenedor para botones dentro del modal */
+.modal-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1.5rem;
+}
+
+/* Botones dentro del modal */
+.modal button {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(135deg, #6a0dad 0%, #1e90ff 100%); /* Degradado violeta a azul */
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Efecto hover para los botones del modal */
+.modal button:hover {
+  background: linear-gradient(135deg, #1e90ff 0%, #6a0dad 100%); /* Invertir degradado al hacer hover */
+  box-shadow: 0 0 15px #6a0dad, 0 0 20px #1e90ff; /* Brillo futurista */
+  transform: scale(1.05); /* Aumento leve en tamaño */
+}
+
+/* Estilo para los checkboxes y etiquetas (Estado y Oferta) */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.checkbox-container label {
+  margin-left: 0.5rem;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Personalización del checkbox */
+.checkbox-container input[type="checkbox"] {
+  appearance: none;
+  width: 1.2rem;
+  height: 1.2rem;
+  background-color: #333;
+  border: 2px solid #6a0dad;
+  border-radius: 0.25rem;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.checkbox-container input[type="checkbox"]:checked {
+  background-color: #1e90ff;
+}
+
+.checkbox-container input[type="checkbox"]::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: white;
+  border-radius: 0.1rem;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.checkbox-container input[type="checkbox"]:checked::before {
+  opacity: 1;
+}
+
+.centered-checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+}
+/* Asegura que los inputs y selects sigan teniendo buen estilo */
+.modal select,
+.modal input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 1rem;
+  background: #333;
+  color: #fff;
+  border: 1px solid #555;
+  border-radius: 0.5rem;
+}

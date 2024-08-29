@@ -1,0 +1,27 @@
+.footer {
+  z-index: 2;
+  border-top: 2px solid black;
+  font-family: Rubik;
+  background-color: #5998ff;
+  width: 100%;
+
+  .row {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding-top: 17px;
+    padding-bottom: 17px;
+
+    .content-text {
+      font-size: 12.8px;
+    }
+
+    .footer-image {
+      text-align-last: center;
+    }
+
+    * + .footer-image {
+      margin-top: 20px;
+    }
+  }
+}
+
